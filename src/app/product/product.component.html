@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <p>Products</p>
+
+    <a href="#" (click) = "operation = 'add'" *ngIf="operation == 'show'">Add product</a>
+    <table border="1" style="margin: 20px;" *ngIf="operation == 'show'">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Brand</th>
+        </tr>
+        <tbody>
+            <tr *ngFor="let product of products">
+                <td>{{ product.pId }}</td>
+                <td>{{ product.pName }}</td>
+                <td>{{ product.pBrand }}</td>
+                <td><a href="#" (click) = "editProduct(product.pId, product.pName, product.pBrand)">Edit</a></td>
+                <td><a href="#" (click) = "deleteProduct(product.pId)">Delete</a></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="#" (click) = "operation = 'show'" *ngIf="operation == 'add'">Go Back</a><br /><br />
+
+    <div *ngIf="operation == 'add'">
+        <input type="text" [(ngModel)]="name" value="name" placeholder="Put your Name" /><br /><br />
+        <input type="text" [(ngModel)]="brand" placeholder="Put your Brand" /><br /><br />
+        <button (click) = "addProduct()" *ngIf="!id">Add product</button>
+        <button (click) = "addProduct()" *ngIf="id">Update product</button>
+    </div>
+</body>
+</html>
